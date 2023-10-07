@@ -51,7 +51,7 @@ Of special importance to starting with this Guacamole install script are:
 
 Download the `guac-install.sh` script from this repo:
 ```
-wget https://raw.githubusercontent.com/Zer0CoolX/guacamole-install-rhel/master/guac-install.sh
+wget https://raw.githubusercontent.com/openexclusiveegg/guacamole-install-rhel-7/master/guac-install.sh
 ```
 If installing a custom Guacamole extension, download it as well and take note of its file name and path. See [here](https://github.com/Zer0CoolX/guacamole-install-rhel/wiki/Customizing-the-Apache-Guacamole-Login-Screen) for more details
 
