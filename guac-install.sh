@@ -56,7 +56,7 @@ JKS_CACERT_PASSWD_DEF="guacamole" # Default CACert Java Keystore password, used 
 # Misc
 GUACD_USER="guacd" # The user name and group of the user running the guacd service
 GUAC_URIPATH_DEF="/" # Default URI for Guacamole
-DOMAIN_NAME_DEF="localhost" # Default domain name of server
+DOMAIN_NAME_DEF="127.0.0.1" # Default domain name of server
 H_ERR=false # Defualt value of if an error has been triggered, should be false
 LIBJPEG_EXCLUDE="exclude=libjpeg-turbo-[0-9]*,libjpeg-turbo-*.*.9[0-9]-*"
 DEL_TMP_VAR=true # Default behavior to delete the temp var file used by error handler on completion. Set to false to keep the file to review last values
@@ -1192,10 +1192,10 @@ s_echo "y" "${Bold}Setup Guacamole"
 
 # Generate Guacamole Configuration File
 { echo "# Hostname and port of guacamole proxy
-guacd-hostname: localhost
+guacd-hostname: 127.0.0.1
 guacd-port:     ${GUAC_PORT}
 # MySQL properties
-mysql-hostname: localhost
+mysql-hostname: 127.0.0.1
 mysql-port: ${MYSQL_PORT}
 mysql-database: ${DB_NAME}
 mysql-username: ${DB_USER}
@@ -1267,7 +1267,7 @@ s_echo "n" "-Harden MariaDB...    "; spinner
 # Create Database and user
 {
 	mysql -u root -p${MYSQL_PASSWD} -e "CREATE DATABASE ${DB_NAME};"
-	mysql -u root -p${MYSQL_PASSWD} -e "GRANT SELECT,INSERT,UPDATE,DELETE ON ${DB_NAME}.* TO '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASSWD}';"
+	mysql -u root -p${MYSQL_PASSWD} -e "GRANT SELECT,INSERT,UPDATE,DELETE ON ${DB_NAME}.* TO '${DB_USER}'@'127.0.0.1' IDENTIFIED BY '${DB_PASSWD}';"
 	mysql -u root -p${MYSQL_PASSWD} -e "FLUSH PRIVILEGES;"
 } &
 s_echo "n" "-Creating Database & User for Guacamole...    "; spinner
@@ -1844,9 +1844,9 @@ s_echo "n" "${Reset}-Log file: ${logfile}"
 s_echo "n" "-firewall backup file: ${fwbkpfile}"
 
 # Determine Guac server URL for web GUI
-if [ ${DOMAIN_NAME} = "localhost" ]; then
+if [ ${DOMAIN_NAME} = "127.0.0.1" ]; then
 	GUAC_URL=${GUAC_LAN_IP}${GUAC_URIPATH}
-else # Not localhost
+else # Not aa
 	GUAC_URL=${DOMAIN_NAME}${GUAC_URIPATH}
 fi
 
